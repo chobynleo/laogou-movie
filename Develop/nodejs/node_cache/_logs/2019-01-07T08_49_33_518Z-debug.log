@@ -1,0 +1,25 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\Develop\\nodejs\\node.exe',
+1 verbose cli   'D:\\Develop\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'start' ]
+2 info using npm@5.6.0
+3 info using node@v8.11.1
+4 verbose stack Error: missing script: start
+4 verbose stack     at run (D:\Develop\nodejs\node_modules\npm\lib\run-script.js:151:19)
+4 verbose stack     at D:\Develop\nodejs\node_modules\npm\lib\run-script.js:61:5
+4 verbose stack     at D:\Develop\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:115:5
+4 verbose stack     at D:\Develop\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:402:5
+4 verbose stack     at checkBinReferences_ (D:\Develop\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:357:45)
+4 verbose stack     at final (D:\Develop\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:400:3)
+4 verbose stack     at then (D:\Develop\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:160:5)
+4 verbose stack     at D:\Develop\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:280:12
+4 verbose stack     at D:\Develop\nodejs\node_modules\npm\node_modules\graceful-fs\graceful-fs.js:78:16
+4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:511:3)
+5 verbose cwd D:\Develop\gitProject\douban-Vue
+6 verbose Windows_NT 10.0.10240
+7 verbose argv "D:\\Develop\\nodejs\\node.exe" "D:\\Develop\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "start"
+8 verbose node v8.11.1
+9 verbose npm  v5.6.0
+10 error missing script: start
+11 verbose exit [ 1, true ]

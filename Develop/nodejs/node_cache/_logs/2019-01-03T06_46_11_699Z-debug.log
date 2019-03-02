@@ -1,0 +1,39 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\Develop\\nodejs\\node.exe',
+1 verbose cli   'D:\\Develop\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'i',
+1 verbose cli   'babel-runtime@6.0.0' ]
+2 info using npm@5.6.0
+3 info using node@v8.11.1
+4 verbose npm-session e4acde8df6298145
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 http fetch GET 200 https://registry.npmjs.org/babel-runtime 1328ms
+8 silly registry:manifest no matching version for babel-runtime@6.0.0 in the cache. Forcing revalidation
+9 http fetch GET 304 https://registry.npmjs.org/babel-runtime 208ms (from cache)
+10 silly fetchPackageMetaData error for babel-runtime@6.0.0 No matching version found for babel-runtime@6.0.0
+11 verbose type version
+12 verbose stack babel-runtime: No matching version found for babel-runtime@6.0.0
+12 verbose stack     at pickManifest (D:\Develop\nodejs\node_modules\npm\node_modules\pacote\node_modules\npm-pick-manifest\index.js:65:11)
+12 verbose stack     at fetchPackument.then.packument (D:\Develop\nodejs\node_modules\npm\node_modules\pacote\lib\fetchers\registry\manifest.js:52:18)
+12 verbose stack     at tryCatcher (D:\Develop\nodejs\node_modules\npm\node_modules\bluebird\js\release\util.js:16:23)
+12 verbose stack     at Promise._settlePromiseFromHandler (D:\Develop\nodejs\node_modules\npm\node_modules\bluebird\js\release\promise.js:512:31)
+12 verbose stack     at Promise._settlePromise (D:\Develop\nodejs\node_modules\npm\node_modules\bluebird\js\release\promise.js:569:18)
+12 verbose stack     at Promise._settlePromise0 (D:\Develop\nodejs\node_modules\npm\node_modules\bluebird\js\release\promise.js:614:10)
+12 verbose stack     at Promise._settlePromises (D:\Develop\nodejs\node_modules\npm\node_modules\bluebird\js\release\promise.js:693:18)
+12 verbose stack     at Async._drainQueue (D:\Develop\nodejs\node_modules\npm\node_modules\bluebird\js\release\async.js:133:16)
+12 verbose stack     at Async._drainQueues (D:\Develop\nodejs\node_modules\npm\node_modules\bluebird\js\release\async.js:143:10)
+12 verbose stack     at Immediate.Async.drainQueues (D:\Develop\nodejs\node_modules\npm\node_modules\bluebird\js\release\async.js:17:14)
+12 verbose stack     at runCallback (timers.js:794:20)
+12 verbose stack     at tryOnImmediate (timers.js:752:5)
+12 verbose stack     at processImmediate [as _immediateCallback] (timers.js:729:5)
+13 verbose cwd D:\Develop\gitProject\douban-Vue
+14 verbose Windows_NT 10.0.10240
+15 verbose argv "D:\\Develop\\nodejs\\node.exe" "D:\\Develop\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "i" "babel-runtime@6.0.0"
+16 verbose node v8.11.1
+17 verbose npm  v5.6.0
+18 error code ETARGET
+19 error notarget No matching version found for babel-runtime@6.0.0
+20 error notarget In most cases you or one of your dependencies are requesting
+20 error notarget a package version that doesn't exist.
+21 verbose exit [ 1, true ]
