@@ -3,6 +3,7 @@
 var mongoose = require('mongoose'),
     Movie = mongoose.model('Movie'),                       // 电影数据模型
     MovieComment = mongoose.model('MovieComment'),         // 电影评论模型
+    MovieTopic = mongoose.model('MovieTopic'),             // 电影话题模型
     Category = mongoose.model('Category'),                 // 电影分类模型
     _ = require('underscore'),                             // 该模块用来对变化字段进行更新
     fs = require('fs'),                                    // 读写文件模块
@@ -31,12 +32,23 @@ exports.detail = function(req,res) {
         if(err) {
           console.log(err);
         }
-        res.render('movie/movie_detail', {
-          title:'酪枸电影详情页',
-          logo:'movie',
-          movie:movie,
-          comments:comments
-        });
+        MovieTopic
+            .find({movie:_id})
+            .populate('comments.from','name')// 查找话题评论人的名字
+            .populate('comments.reply.from comments.reply.to','name')// 查找话题评论楼层中回复人的名字
+            .exec(function(err,topics){
+                if(err) {
+                    console.log(err);
+                }
+                //console.log('topics------------------');
+                res.render('movie/movie_detail', {
+                    title:'酪枸电影详情页',
+                    logo:'movie',
+                    movie:movie,
+                    comments:comments,
+                    topics:topics
+                });
+            });
       });
   });
 };

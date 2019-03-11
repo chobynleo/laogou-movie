@@ -148,4 +148,72 @@ audio {
     cursor: pointer;
   }
 }
+/* 长评部分样式 */
+.comment_btn:before {
+  content: '';
+  background: no-repeat url(/libs/images/movie/movieDetail/write.png) center/contain;
+  width: 13px;
+  height: 13px;
+  float: left;
+  margin-right: 4px;
+}
+.comment_btn {
+  color: #C65E24;
+  background-color: rgba(198,94,36,0.15);
+  height: auto;
+  padding: 7px 12px;
+  line-height: 13px;
+  float: right;
+}
+.tag {
+  font-size: 13px;
+  margin-right: 5px;
+  color: #999;
+}
+.right {
+  float: right;
+  margin-right: 0;
+}
+.publish{
+  overflow: initial;/*initial unset visible*/
+}
+.topic-panel-body {
+  background: #fff;
+}
+.topic-comment-body .topic-comment-header {
+  background-color: rgba(240,243,245,0.8);
+  line-height: 1.62;
+  padding: 3px 10px 3px;
+  color: #999;
+}
+.topic-comment-body .topic-comment-header span {
+  margin-left: 8px;
+}
+.topic-comment-body .topic-comment-content {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  margin-left: 10px;
+}
+.topic-comment-body .op-lnks {
+  padding: 0 10px;
+  /*text-align: right;*/
+}
+.close{
+  top: -0.5rem!important;
+}
+.topic-media-heading {
 
+  a{
+    color: #072;
+    font-size: 15px;
+  }
+}
+.topic-comment-reply, .topic-comment-del{
+  float: right;
+}
+.media{
+  width: 100%;
+}

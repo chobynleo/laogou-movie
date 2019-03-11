@@ -7,6 +7,7 @@ var MovieIndex = require('../app/controllers/movie/movie_index'), 		// 电影首
 		MovieComment = require('../app/controllers/movie/movie_comment'), // 电影评论控制器
 		Category = require('../app/controllers/movie/movie_category'),		// 电影分类控制器
 		City = require('../app/controllers/movie/movie_city'),       			// 电影院分类控制器
+    	MovieTopic = require('../app/controllers/movie/movie_topic'), 	// 电影话题控制器
 
 		// 音乐首页模块路由控制器
 		MusicIndex = require('../app/controllers/music/music_index'), 		// 音乐首页控制器
@@ -64,6 +65,14 @@ module.exports = function(app){
 	// 用户评论路由
 	app.post('/admin/movie/movieComment',User.signinRequired,MovieComment.save);
 
+	// 发表话题路由
+	app.post('/admin/movie/movieTopic',User.signinRequired,MovieTopic.save);
+
+  // 发表话题评论路由
+  app.post('/admin/movie/movieTopicComment',User.signinRequired,MovieTopic.add);
+
+  // 话题评论删除路由
+  app.route('/topicComment/:id').delete(MovieTopic.del);
 	// 更新电影路由
 	app.get('/admin/movie/update/:id',User.signinRequired,User.adminRequired,Movie.update);
 
