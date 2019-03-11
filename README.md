@@ -1,4 +1,4 @@
-使用NodeJs+MongoDB+Vue+ES6+jQuey+Webpack搭建的酪枸电影网站
+使用NodeJs+MongoDB+Vue+ES6+jQuery+Webpack搭建的酪枸电影网站
 ================================================
 
 简介:

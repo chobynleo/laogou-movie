@@ -3,7 +3,10 @@
 $.support.cors = true;                                  // 解决IE8/9 Ajax跨域请求问题
 
 $(function() {
-
+  // 推荐电影列表中的hover
+  $('.special.cards .image').dimmer({
+    on: 'hover'
+  });
   // 格式化时间函数
   function padding(number) {
     return number < 10 ? '0' + number : '' + number;

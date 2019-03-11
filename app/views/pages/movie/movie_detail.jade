@@ -11,7 +11,7 @@ block content
           span #{movie.title}
           span.year (#{movie.year})
           .detail-body.clearfix
-            if movie.poster.indexOf('http:') > -1
+            if movie.poster.indexOf('http:') > -1 || movie.poster.indexOf('https:') > -1
               img(src="#{movie.poster}" alt="#{movie.title}")
             else
               // 电影海报为自行上传
@@ -131,6 +131,17 @@ block content
       // 预告片下方广告节点标签以及记录看过电影的人的标签
       .record-movie.col-md-5.col-md-offset-1.col-xs-6
         h4 谁看过这部电影&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
+        .ui.labeled.button(tabindex='0')
+          .ui.green.button
+            i.heart.icon
+            span 看过
+          a.ui.basic.green.left.pointing.label 3
+          .span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          .ui.labeled.button(tabindex='0')
+            .ui.blue.button
+              i.fork.icon
+              span 想看
+            a.ui.basic.left.pointing.blue.label 0
         .panel-body
           ul.media-list
             if comments
@@ -143,9 +154,23 @@ block content
                       h4.media-heading #{item.from.name}
                       p 3分钟前看过
                     hr
+
+      // 推荐电影
+      .record-movie.col-md-5.col-md-offset-1.col-xs-6
+        h4 喜欢这部电影的人也喜欢&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
+        .ui.special.cards
+          .card
+            .blurring.dimmable.image
+              .ui.dimmer
+                .content
+                  .center
+                    .ui.inverted.button 查看电影
+              img(src='/libs/images/movie/advertisements/1.jpg')
+            .content
+              a.header Team Fu
+
         a(href="/fullpage" target="_blank")
           img(src="/libs/images/movie/advertisements/1.jpg")
-
     // 写话题的模态框
     if user
       .ui.modal.publish.large#topic-publish-modal

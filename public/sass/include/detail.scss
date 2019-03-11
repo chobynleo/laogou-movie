@@ -96,7 +96,7 @@ audio {
     p {
       word-wrap:break-word;
       word-break:normal;
-      width: 550px;
+      /*width: 550px;*/
     }
   }
   textarea {
@@ -216,4 +216,9 @@ audio {
 }
 .media{
   width: 100%;
+}
+
+/* 推荐列表中的card*/
+.card{
+  width: 200px!important;
 }

@@ -55,6 +55,7 @@ $(function() {
           }else{
             $oTitle.text('即将上映');
           }
+          console.log(234)
           // 如果切换后电影列表数量小于原电影数量,则将多余节点删除
           if(dataLength < $oThumbnail.length) {
             $('#scrollMoives .thumbnail:gt('+ (dataLength -1) +')').remove();
@@ -83,11 +84,11 @@ $(function() {
               var $oImg = $($oThumbnail[k]).find('img');
               // 对电影海报是否是自行上传进行判断
               if(dataMov[k].poster) {
-                if(dataMov[k].poster.indexOf('http:') > -1) {
-                  $oImg.attr('src',dataMov[k].poster).attr('alt',dataMov[k].poster);
+                if(dataMov[k].poster.indexOf('https:') > -1 || dataMov[k].poster.indexOf('http:') > -1) {
+                  $oImg.attr('src',dataMov[k].poster).attr('alt',dataMov[k].title);
                 }else {
                   //自行上传的海报图片路径不同
-                  $oImg.attr('src','/upload/movie/'+dataMov[k].poster).attr('alt',dataMov[k].poster);
+                  $oImg.attr('src','/upload/movie/'+dataMov[k].poster).attr('alt',dataMov[k].title);
                 }
               }
             }
