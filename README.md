@@ -1,15 +1,18 @@
-使用NodeJs+MongoDB+Vue+ES6+jQuey+Webpack搭建的酪枸电影音乐网站
+使用NodeJs+MongoDB+Vue+ES6+jQuey+Webpack搭建的酪枸电影网站
 ================================================
 
 简介:
 ---------------
-该项目基于<a href="https://github.com/Loogeek/douban_Website" target="\_blank"> douban_Website</a>项目,尝试使用了Vue.js替换了原网页中部分用jQuery操作DOM的JS脚本，并使用Webpack实现简单的资源模块管理，并尝试了使用ES6完成Vue组件的编写，具体项目功能与<a href="https://github.com/Loogeek/douban_Website" target="\_blank"> douban_Website</a>中介绍无太多变化，可参考其Readme,同样可以参考使用React组件化开发来完成该案例<a href="https://github.com/Loogeek/douban-React" target="\_blank"> douban-React</a>。
+基于Node.js的电影网站注重社区中对于电影文化的探讨。电影网站就是为了能够将各类电影爱好者通过网络连接起来，形成一个庞大的关系网，在这里，可以查看最新电影咨询，和朋友分享电影新的，记录你的电影足迹，将每个人的回忆都记录在此。
+
+技术说明:
+---------------
+该项目使用Webpack实现简单的资源模块管理；前端一部分使用jQuery操作DOM的JS脚本，另一部分使用了ES6完成Vue组件的编写；后端使用NodeJs编写路由；数据库使用了MongoDB对数据进行管理。
 
 项目整体效果
 -------
 <div>
   <img src="http://oh1orcwqb.bkt.clouddn.com/doubanMovie.jpeg" width="45%" float"left" height="700" alt="电影首页"/>
-  <img src="http://oh1orcwqb.bkt.clouddn.com/doubanMusic.jpeg" width="45%" float"left" height="700" alt="音乐首页"/>
 </div>
 <div text-align="center">
   <img src="http://oh1orcwqb.bkt.clouddn.com/doubanDetail.jpeg" width="45%" alt="电影详情"/>
@@ -94,5 +97,4 @@
 
 后期完善:
 -------
-1. 部分功能还有待完善;
-2. 部分功能还是基于jQuery对DOM的操作来完成，后期会尝试将全部功能都使用Vue.js进行改进重写。
+1. 将全部页面用Vue.js进重构;
