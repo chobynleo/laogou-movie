@@ -335,6 +335,76 @@ $(function() {
     })
   }
 
+  // 看过 功能
+  $('#have-seen').on('click',function(event) {
+    event.preventDefault();
+    var userId = $('input[name="user[id]"]').val();
+    var movieId = $('input[name="movie[id]"]').val();
+
+    $.ajax({
+      url: '/movieSee/:id?userId='+userId+'&movieId='+movieId+'&seeId='+1,
+      type: 'GET',
+    }).done(function(results) {
+      console.log(results)
+      if($('#nobody-record')){
+        $('#nobody-record').remove()
+      }
+      if(results.msg) {
+        // 表示看过
+        $('#record-body').append('<li class="media">\n' +
+          '                <div class="media-left"><img src="/libs/images/user/headImg.png" style="width: 40px; height: 40px;" class="media-object"></div>\n' +
+          '                <div class="media-body">\n' +
+          '                  <h4 class="media-heading">'+results.name +'</h4>\n' +
+          '                  <p>'+results.createAt +'看过</p>\n' +
+          '                </div>\n' +
+          '                <hr>\n' +
+          '              </li>');
+
+        $('#have-seen').addClass('disabled');
+        $('#have-seen span').html('已看过');
+        var seenNumber = $('#seen-number');
+        seenNumber.html(parseInt(seenNumber.html()) + 1);
+      }
+    });
+  });
+
+  // 想看 功能
+  $('#want-to-see').on('click',function(event) {
+    event.preventDefault();
+    var userId = $('input[name="user[id]"]').val();
+    var movieId = $('input[name="movie[id]"]').val();
+
+    $.ajax({
+      url: '/movieSee/:id?userId='+userId+'&movieId='+movieId+'&seeId='+0,
+      type: 'GET',
+    }).done(function(results) {
+      if($('#nobody-record')){
+        $('#nobody-record').remove()
+      }
+      if(results.msg === '0') {
+        // 表示想看
+        if($('#nobody-record')){
+          $('#nobody-record').remove()
+        }
+        $('#record-body').append('<li class="media">\n' +
+          '                <div class="media-left"><img src="/libs/images/user/headImg.png" style="width: 40px; height: 40px;" class="media-object"></div>\n' +
+          '                <div class="media-body">\n' +
+          '                  <h4 class="media-heading">'+results.name +'</h4>\n' +
+          '                  <p>'+results.createAt +'表示想看</p>\n' +
+          '                </div>\n' +
+          '                <hr>\n' +
+          '              </li>');
+        $('#want-to-see').addClass('disabled');
+        $('#want-to-see span').html('已想看');
+        var wannaSeeNumber = $('#wanna-see-number');
+        wannaSeeNumber.html(parseInt(wannaSeeNumber.html()) + 1);
+      }
+    });
+  });
+
+
+
+
 
 
 

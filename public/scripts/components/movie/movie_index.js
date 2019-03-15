@@ -55,7 +55,6 @@ $(function() {
           }else{
             $oTitle.text('即将上映');
           }
-          console.log(234)
           // 如果切换后电影列表数量小于原电影数量,则将多余节点删除
           if(dataLength < $oThumbnail.length) {
             $('#scrollMoives .thumbnail:gt('+ (dataLength -1) +')').remove();

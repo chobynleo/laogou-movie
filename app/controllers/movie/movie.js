@@ -4,10 +4,13 @@ var mongoose = require('mongoose'),
     Movie = mongoose.model('Movie'),                       // 电影数据模型
     MovieComment = mongoose.model('MovieComment'),         // 电影评论模型
     MovieTopic = mongoose.model('MovieTopic'),             // 电影话题模型
+    MovieSee = mongoose.model('MovieSee'),                 // 电影观看记录模型
     Category = mongoose.model('Category'),                 // 电影分类模型
     _ = require('underscore'),                             // 该模块用来对变化字段进行更新
     fs = require('fs'),                                    // 读写文件模块
     path = require('path');                                // 路径模块
+
+var moment = require('moment'); //引入时间模型
 
 // 详细页面控制器
 exports.detail = function(req,res) {
@@ -41,13 +44,35 @@ exports.detail = function(req,res) {
                     console.log(err);
                 }
                 //console.log('topics------------------');
-                res.render('movie/movie_detail', {
+              MovieSee
+                .findOne({movie:_id})
+                .populate('see.author','name')// 查找话题评论人的名字
+                .exec(function(err,seeBody) {
+                  if (err) {
+                    console.log(err);
+                  }
+                  //统计看过的人数和想看过的人数
+                  var haveSeenNumber = 0,wantToSeeNumber = 0;
+                  if (seeBody){
+                    for (var i=0;i<seeBody.see.length;i++){
+                      if (seeBody.see[i].isSee){
+                        haveSeenNumber++
+                      } else{
+                        wantToSeeNumber++
+                      }
+                    }
+                  }
+                  res.render('movie/movie_detail', {
                     title:'酪枸电影详情页',
                     logo:'movie',
                     movie:movie,
                     comments:comments,
-                    topics:topics
-                });
+                    topics:topics,
+                    see:seeBody === null?{}:seeBody.see,
+                    seeNumber:{haveSeenNumber:haveSeenNumber,wantToSeeNumber:wantToSeeNumber}
+                  });
+                })
+
             });
       });
   });

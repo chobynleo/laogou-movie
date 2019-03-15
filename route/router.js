@@ -7,7 +7,8 @@ var MovieIndex = require('../app/controllers/movie/movie_index'), 		// 电影首
 		MovieComment = require('../app/controllers/movie/movie_comment'), // 电影评论控制器
 		Category = require('../app/controllers/movie/movie_category'),		// 电影分类控制器
 		City = require('../app/controllers/movie/movie_city'),       			// 电影院分类控制器
-    	MovieTopic = require('../app/controllers/movie/movie_topic'), 	// 电影话题控制器
+    MovieTopic = require('../app/controllers/movie/movie_topic'), 	  // 电影话题控制器
+  	MovieSee = require('../app/controllers/movie/movie_see'), 	      // 电影观看记录控制器
 
 		// 音乐首页模块路由控制器
 		MusicIndex = require('../app/controllers/music/music_index'), 		// 音乐首页控制器
@@ -59,6 +60,9 @@ module.exports = function(app){
 	app.route('/movie/:id')
 			 .get(Movie.detail)
 			 .delete(MovieComment.del);
+
+  // 电影观看记录路由
+  app.route('/movieSee/:id').get(MovieSee.save);
 
 	// User.signinRequired 用户登录控制   User.adminRequired 用户权限控制
 

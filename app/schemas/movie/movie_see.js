@@ -1,0 +1,60 @@
+'use strict';
+
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    // ObjectId是mongoose中重要的引用字段类型，在Schema中默认配置了该属性，索引也是利用组件进行
+    ObjectId = Schema.Types.ObjectId;
+
+// 电影数据类型
+var MovieSeeSchema = new Schema({
+    // type为ObjectID为了实现关联文档的查询，评论结构简单
+    movie:{
+        type: ObjectId,
+        ref: 'Movie'															// 当前评论的电影，rel指向Movie模型
+    },
+  meta: {
+    createAt: {
+      type: Date,
+      default: Date.now()
+    },
+    updateAt: {
+      type: Date,
+      default: Date.now()
+    }
+  },
+    see:[{                                          // 观众
+        author:{
+            type: ObjectId,
+            ref: 'User'
+        },
+        isSee:Boolean,                          //true表示已经观看，false表示想看
+        meta: {
+            createAt: {
+                type: Date,
+                default: Date.now()
+            }
+        }
+    }]
+});
+
+
+// 模式保存前执行下面函数,如果当前数据是新创建，则创建时间和更新时间都是当前时间，否则更新时间是当前时间
+MovieSeeSchema.pre('save',function(next) {
+  if(this.isNew) {
+    this.meta.createAt = this.meta.updateAt = Date.now();
+  }else {
+    this.meta.updateAt = Date.now();
+  }
+  next();
+});
+
+// 静态方法不会与数据库直接交互，需要经过模型编译实例化后才会具有该方法
+MovieSeeSchema.statics = {
+    findById: function(id,cb) {
+        return this
+            .findOne({movie: id})
+            .exec(cb);
+    }
+};
+
+module.exports = MovieSeeSchema;
