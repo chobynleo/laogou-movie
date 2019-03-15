@@ -122,14 +122,25 @@ block content
             hr
             if topics
               each item in topics
-                h3
-                  a( id=item._id, href='javascript:void(0);').show-modal-btn #{item.title}
-                div
-                  span.tag #{moment(item.meta.updateAt).format('MM-DD HH:mm')}
-                  span.tag.right
-                    span 浏览(4)
-                    span 留言(1)
-                hr
+                div(id = 'box-'+ item._id)
+                  h3
+                    a( id=item._id, href='javascript:void(0);').show-modal-btn #{item.title}
+                    span.tag.right
+                      if user
+                        if user._id === item.publisher
+                          .ui.inline.dropdown(tabindex='0')
+                            .text
+                            i.dropdown.icon
+                            .menu.transition.hidden(tabindex='-1')
+                              .item
+                                span.tag.topic-del(style="color:red" data-did="#{item._id}" ) 删除
+                  div
+                    span.tag #{moment(item.meta.updateAt).format('MM-DD HH:mm')}
+                    span.tag.right
+                      span 浏览(4)
+                      span 留言(#{item.comments.length})
+
+                  hr
 
 
       // 预告片下方广告节点标签以及记录看过电影的人的标签

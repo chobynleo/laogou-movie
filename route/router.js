@@ -72,11 +72,15 @@ module.exports = function(app){
 	// 发表话题路由
 	app.post('/admin/movie/movieTopic',User.signinRequired,MovieTopic.save);
 
+	//删除话题路由
+  app.route('/topic/:id').delete(MovieTopic.del);
+
   // 发表话题评论路由
   app.post('/admin/movie/movieTopicComment',User.signinRequired,MovieTopic.add);
 
   // 话题评论删除路由
   app.route('/topicComment/:id').delete(MovieTopic.del);
+
 	// 更新电影路由
 	app.get('/admin/movie/update/:id',User.signinRequired,User.adminRequired,Movie.update);
 

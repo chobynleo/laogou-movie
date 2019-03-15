@@ -97,39 +97,13 @@ exports.add = function(req,res) {
 // 删除电影评论控制器
 exports.del = function(req,res) {
   // 获取客户端Ajax发送的URL值中的id值
-  var topicid = req.query.topicid,           // 获取该话题的id值
-    cid = req.query.cid,                     // 获取话题评论楼层的id值
-    crId = req.query.crId;                     // 获取话题评论楼层回复的id值
-  // 如果点击的是叠楼中的回复评论的删除按钮
-  if(crId !== 'undefined') {
-
-    // 先查找到该叠楼评论
-    MovieTopic
-      .findOne({_id:topicid})
-      .exec(function(err,topicComments) {
-        //删除该评论楼层
-        topicComments.save(function(err,comment) {
-          if (err) {
-            console.log(err);
-          }
-          res.json({success:0});
-        })
-      });
-    // 若是点击第一条评论中的删除
-  }else {
-    MovieTopic
-      .findOne({_id:topicid})
-      .exec(function(err,topicComments) {
-        //删除该评论楼层
-        topicComments.comments.splice(cid,1);
-        console.log(1);
-        topicComments.save(function(err,comment) {
-          if (err) {
-            console.log(err);
-          }
-          res.json({success:1});
-        })
-      });
-
-  }
+  var topicid = req.query.topicid;                     // 获取话题评论楼层回复的id值
+  console.log(1);
+  console.log(topicid);
+  MovieTopic.remove({_id:topicid},function(err) {
+    if(err){
+      console.log(err);
+    }console.log('chonga')
+    res.json({success:1});
+  });
 };

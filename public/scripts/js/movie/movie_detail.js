@@ -7,6 +7,10 @@ $(function() {
   $('.special.cards .image').dimmer({
     on: 'hover'
   });
+  //下拉菜单
+  $('.ui.dropdown')
+    .dropdown()
+  ;
   // 格式化时间函数
   function padding(number) {
     return number < 10 ? '0' + number : '' + number;
@@ -165,7 +169,13 @@ $(function() {
           var data = results.data || {};
           var createAt = results.createAt || {};
           //填充topic区域
-          $('#topicBody').append('<h3><a id=' + data._id + ' href="javascript:void(0);"'+ 'class="show-modal-btn">' + data.title + '</a></h3>\n' +'<div><span class="tag">' + createAt + '</span><span class="tag right"><span>浏览(4)</span><span>留言(1)</span></span></div><hr>' )
+          $('#topicBody').append('<div id="box-'+data._id +'" ><h3><a id=' + data._id + ' href="javascript:void(0);"'+ 'class="show-modal-btn">' + data.title + '</a>'+ '<span class="tag right">\n' +
+            '                    <div tabindex="0" class="ui inline dropdown">\n' +
+            '                      <div class="text"></div><i class="dropdown icon"></i>\n' +
+            '                      <div tabindex="-1" class="menu transition hidden">\n' +
+            '                        <div class="item"><span style="color:red" data-did='+ data._id +' class="tag topic-del">删除</span></div>\n' +
+            '                      </div>\n' +
+            '                    </div></span>' +'</h3>\n' +'<div><span class="tag">' + createAt + '</span><span class="tag right"><span>浏览(0)</span><span>留言(0)</span></span></div><hr></div>' )
           //为生成的元素绑定监听事件(点击展示话题面板的按钮)
           $('.show-modal-btn:last').on('click', function(event) {
             $('#modal'+ data._id)
@@ -175,6 +185,25 @@ $(function() {
             // 自食其果，bootstrap和semantic打架了，开modal冲突
             //$('#bootstrapJs').hide()
           });
+          //为生成的元素绑定监听事件(点击删除话题的按钮)
+          $('.topic-del').on('click',function(event) {
+            event.preventDefault();
+            var target = $(this),                  // 获取点击对象
+              did = target.data('did')     // 话题的ID值
+            $.ajax({
+              url: '/topic/:id?topicid='+did,
+              type: 'DELETE',
+            }).done(function(results) {
+              if(results.success === 1) {
+                // 获取box的节点并删除
+                $('#box-'+did).remove();
+              }
+            });
+          })
+        //为生成的元素绑定监听事件 下拉菜单
+        $('.ui.dropdown')
+          .dropdown()
+        ;
           //填充modal区域
           $('#topic-hidden').append('<div id="modal'+data._id+'" class="ui modal publish large long"><i class="close icon"></i>\n' +
             '          <div class="header">' + data.title + '</div>\n' +
@@ -210,6 +239,23 @@ $(function() {
             '        </div>');
       });
   });
+
+  //删除话题事件
+  $('.topic-del').on('click',function(event) {
+    event.preventDefault();
+    var target = $(this),                  // 获取点击对象
+      did = target.data('did')     // 话题的ID值
+    console.log('console.log(did)')
+    $.ajax({
+      url: '/topic/:id?topicid='+did,
+      type: 'DELETE',
+    }).done(function(results) {
+      if(results.success === 1) {
+        // 获取box的节点并删除
+        $('#box-'+did).remove();
+      }
+    });
+  })
 
   //话题中评论区提交评论点击事件
   $('.topicComments button').on('click',function(event) {
@@ -407,7 +453,6 @@ $(function() {
     event.preventDefault();
     var target = $(this),                  // 获取点击回复的评论对象
       mId = target.data('mid');
-    console.log(mId)
     window.open(mId)
   })
 
