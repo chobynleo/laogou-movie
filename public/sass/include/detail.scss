@@ -4,6 +4,10 @@
 #content{
   h4 {
     color: #007722;
+    margin: 20px 0 20px;
+  }
+  h5 {
+    color: #007722;
   }
 }
 /*清除padding*/
@@ -221,4 +225,12 @@ audio {
 /* 推荐列表中的card*/
 .card{
   width: 200px!important;
+
+}
+.card img{
+  height: 270px!important;
+
+}
+.warp{
+
 }

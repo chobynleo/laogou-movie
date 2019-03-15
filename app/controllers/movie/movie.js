@@ -62,15 +62,30 @@ exports.detail = function(req,res) {
                       }
                     }
                   }
-                  res.render('movie/movie_detail', {
-                    title:'酪枸电影详情页',
-                    logo:'movie',
-                    movie:movie,
-                    comments:comments,
-                    topics:topics,
-                    see:seeBody === null?{}:seeBody.see,
-                    seeNumber:{haveSeenNumber:haveSeenNumber,wantToSeeNumber:wantToSeeNumber}
-                  });
+                  //查找相同类型的电影
+                  Movie.findByGenres(movie.genres, function(err,_genres) {
+                    if (err) {
+                      console.log(err);
+                    }
+                    //剔除本身
+                    for(var i=0;i<_genres.length;i++){
+                      //console.log(_genres[i].title+':'+_genres[i]._id);
+                      if (String(movie._id) === String(_genres[i]._id)) {
+                        _genres.splice(i,1)
+                      }
+                    }
+                    res.render('movie/movie_detail', {
+                      title:'酪枸电影详情页',
+                      logo:'movie',
+                      movie:movie,
+                      comments:comments,
+                      topics:topics,
+                      see:seeBody === null?{}:seeBody.see,
+                      seeNumber:{haveSeenNumber:haveSeenNumber,wantToSeeNumber:wantToSeeNumber},
+                      genres:_genres
+                    });
+                  })
+
                 })
 
             });

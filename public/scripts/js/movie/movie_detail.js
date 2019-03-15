@@ -402,6 +402,15 @@ $(function() {
     });
   });
 
+  // 想看 功能
+  $('.inverted').on('click',function(event) {
+    event.preventDefault();
+    var target = $(this),                  // 获取点击回复的评论对象
+      mId = target.data('mid');
+    console.log(mId)
+    window.open(mId)
+  })
+
 
 
 

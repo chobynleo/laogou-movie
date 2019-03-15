@@ -58,7 +58,13 @@ MovieSchema.statics = {
 		return this
 			.findOne({_id: id})
 			.exec(cb);
-	}
+	},
+	//查找相同类型的电影
+  findByGenres: function(_genres,cb) {
+    return this
+      .find({genres: _genres})
+      .exec(cb);
+  }
 };
 
 module.exports = MovieSchema;

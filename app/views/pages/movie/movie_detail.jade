@@ -77,7 +77,7 @@ block content
                       .media-left
                         img.media-object(src="/libs/images/user/headImg.png" style="width: 40px; height: 40px;")
                       .media-body
-                        h4.media-heading #{item.from.name}
+                        h5.media-heading #{item.from.name}
                         p #{item.content}
                         span.createAt #{moment(item.meta.createAt).format('MM-DD HH:mm')} &nbsp;&nbsp;&nbsp;&nbsp;
                         a.comment(href="#comments" data-cid="#{item._id}" data-tid="#{item.from._id}") 回复
@@ -89,7 +89,7 @@ block content
                               .media-left
                                 img.media-object(src="/libs/images/user/headImg.png" style="width: 30px; height: 30px;")
                               .media-body
-                                h4.media-heading
+                                h5.media-heading
                                   | #{reply.from.name}
                                   span &nbsp;回复&nbsp;
                                   | #{reply.to.name}
@@ -240,6 +240,7 @@ block content
                 i.fork.icon
                 span 想看
               a.ui.basic.left.pointing.blue.label#wanna-see-number 0
+        hr
         .panel-body
           ul.media-list#record-body
             if see.length>0
@@ -248,7 +249,7 @@ block content
                   .media-left
                     img.media-object(src="/libs/images/user/headImg.png" style="width: 40px; height: 40px;")
                   .media-body
-                    h4.media-heading #{item.author.name}
+                    h5.media-heading #{item.author.name}
                     p #{(moment.duration(moment(Date.now()) - item.meta.createAt, 'ms')).locale('zh-cn').humanize()}前#{item.isSee === true?'看过':'想看'}
                   hr
             else
@@ -261,18 +262,27 @@ block content
       .record-movie.col-md-5.col-md-offset-1.col-xs-6
         h4 喜欢这部电影的人也喜欢&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
         .ui.special.cards
-          .card
-            .blurring.dimmable.image
-              .ui.dimmer
+          if genres
+            each item in genres
+              .card
+                .blurring.dimmable.image
+                  .ui.dimmer
+                    .content
+                      .center
+                        .ui.inverted.button( data-mid ="#{item._id}") 查看电影
+                          a(href="/movie/#{item._id}" target="_blank")
+                  if item.poster.indexOf('http:') > -1 || item.poster.indexOf('https:') > -1
+                    img(src="#{item.poster}" alt="#{item.title}")
+                  else
+                    // 电影海报为自行上传
+                    img(src="/upload/movie/#{item.poster}" alt="#{item.title}")
                 .content
-                  .center
-                    .ui.inverted.button 查看电影
-              img(src='/libs/images/movie/advertisements/1.jpg')
-            .content
-              a.header Team Fu
+                  a.header #{item.title}
 
-        a(href="/fullpage" target="_blank")
-          img(src="/libs/images/movie/advertisements/1.jpg")
+        .warp
+          h4 大型电影宣传区&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
+          a(href="/fullpage" target="_blank")
+            img(src="/libs/images/movie/advertisements/1.jpg")
     // 写话题的模态框
     if user
       .ui.modal.publish.large#topic-publish-modal
@@ -323,7 +333,7 @@ block content
                             img.media-object(src="/libs/images/user/headImg.png" style="width: 40px; height: 40px;")
                           .media-body.topic-comment-body
                             .topic-comment-header
-                              h4.topic-media-heading
+                              h5.topic-media-heading
                                 a(href="javascript:;") #{_item.from.name}
                                 span.createAt #{moment(_item.meta.createAt).format('MM-DD HH:mm')} &nbsp;&nbsp;&nbsp;&nbsp;
                             p.topic-comment-content #{_item.content}
@@ -337,7 +347,7 @@ block content
                                     .media-left
                                       img.media-object(src="/libs/images/user/headImg.png" style="width: 30px; height: 30px;")
                                     .media-body
-                                      h4.topic-media-heading
+                                      h5.topic-media-heading
                                         a #{reply.from.name}
                                         span &nbsp;回复&nbsp;
                                         a #{reply.to.name}
